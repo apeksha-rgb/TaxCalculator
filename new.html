@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>   
+    
+    <div class="container">
+      <h1 style="text-align: center; padding-top: 20px;">Tax Calculator</h1>
+      <form id="tax-form">
+        <div class="form-group">
+          <label for="gross-annual-income">Gross Annual Income <button class="btn badge text-bg-primary pe-auto" type="button" data-bs-toggle="tooltip" title="Gross annual income is your total salary in a year before any deductions">?</button></label>
+          <div class="input-group">
+            <input type="number" class="form-control" id="gross-annual-income" name="gross-annual-income" required>
+            <div class="input-group-append">
+              <span class="input-group-text error-tooltip" data-toggle="tooltip" data-placement="top" title="Please enter numbers only">!</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="extra-income">Extra Income <button class="btn badge text-bg-primary pe-auto" type="button" data-bs-toggle="tooltip" title="Any additional income earned outside of your gross annual income, such as income from freelancing, rental properties, or interest from investments">?</button></label>
+          <div class="input-group">
+            <input type="number" class="form-control" id="extra-income" name="extra-income">
+            <div class="input-group-append">
+              <span class="input-group-text error-tooltip" data-toggle="tooltip" data-placement="top" title="Please enter numbers only">!</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="deductions">Total Applicable Deductions <button class="btn badge text-bg-primary pe-auto" type="button" data-bs-toggle="tooltip" title="The total amount of deductions that can be applied to your gross annual income">?</button></label>
+          <div class="input-group">
+            <input type="number" class="form-control" id="deductions" name="deductions" required>
+            <div class="input-group-append">
+              <span class="input-group-text error-tooltip" data-toggle="tooltip" data-placement="top" title="Please enter numbers only">!</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="age">Age <button class="btn badge text-bg-primary pe-auto tooltip-d" type="button" data-bs-toggle="tooltip" title="Select your age group to determine the tax rate applicable to you. Different tax slabs apply to different age groups.">?</button></label>
+          <select class="form-control" id="age" name="age" required>
+            <option value="">Select age...</option>
+            <option value="less_than_40">Less than 40</option>
+            <option value="between_40_and_60">Between 40 and 60</option>
+            <option value="greater_than_60">Greater than 60</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit-btn" >Submit</button>
+      </form>
+    </div>
+    <div class="container">
+      <div class="popup">
+        <h3> Your overall income will be</h3>
+        <div id="resultText"></div>
+        <p>after tax deductions</p>
+        <button type="submit" class="btn btn-primary" id="closebtn"> Close </button>
+      </div>
+    </div>
+
+    
+
+    
+    
+    
+    
+    
+</body>
+<script src="script.js"></script>
+
+</html>
