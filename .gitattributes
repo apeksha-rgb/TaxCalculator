@@ -1,0 +1,5 @@
+# Set default behavior to normalize line endings
+* text=auto
+
+# Exclude files or directories from line ending normalization
+node_modules/** -text
