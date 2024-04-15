@@ -57,6 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
       let deductions = parseFloat(document.getElementById('deductions').value);
       let age = document.getElementById('age').value;
 
+      if (grossIncome < 100000) {
+        alert('Gross annual income must be greater than 1 lakh.');
+        return;
+    }
+
       // Calculate tax
       let result = calculateTax(grossIncome, extraIncome, deductions, age);
 
