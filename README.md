@@ -1,6 +1,7 @@
 # Tax Calculator
 
-![Tax Calculator](Test1.png)
+
+![TaxCalculatorUI](https://github.com/apeksha-rgb/TaxCalculator/assets/62876780/5062aba3-4b2c-4a15-9c12-767b9bf07e18)
 
 ## Overview
 
@@ -32,6 +33,7 @@ The Tax Calculator is a web application designed to help users calculate their i
 - To run the tests, ensure you have Jest installed (`npm install --save-dev jest`) and execute `npm test` in your terminal.
 - Screenshots  : 
 ![Test1](https://github.com/apeksha-rgb/TaxCalculator/assets/62876780/ff547f1c-8316-4644-b4ee-5f65d1c55577)
+![TestCode](https://github.com/apeksha-rgb/TaxCalculator/assets/62876780/b0ebad7b-e6dc-4355-bd2a-9ee6b1c92528)
 
 ## Contributing
 
