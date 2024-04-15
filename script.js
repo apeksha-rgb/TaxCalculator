@@ -1,84 +1,98 @@
-const form = document.querySelector("form")
-
-
-form.addEventListener("submit",function(e){
-  e.preventDefault()
-  
-  let age = document.querySelector("#age")
-  let tax ;
-  let resultText = document.querySelector("#resultText")
-  const grossAnnualIncome =parseInt(document.querySelector("#gross-annual-income").value)
-  const extraIncome =parseInt(document.querySelector("#extra-income").value)
-  const deduction =parseInt(document.querySelector("#deductions").value)
-  const overallIncome = parseInt((grossAnnualIncome + extraIncome) - deduction)
-  console.log(overallIncome)
-
-  if(age.value === "less_than_40"){
-    if(overallIncome <= 800000){
-      resultText.innerHTML =" No tax is payable"
-    }else if(overallIncome > 800000){
-      tax = Math.max(0, (overallIncome - 800000) * 0.3)
-      resultText.innerHTML = `Tax is applicable. the tax amour is ${tax}`
+document.addEventListener('DOMContentLoaded', function() {
+  // Function to calculate tax
+  function calculateTax(grossIncome, extraIncome, deductions, age) {
+    let totalIncome = grossIncome + extraIncome - deductions;
+    if(totalIncome <= 800000){
+      return totalIncome;
     }
-  }else if(age.value === "between_40_and_60"){
-    if(overallIncome <= 800000){
-      resultText.innerHTML =" No tax is payable"
-    }else if(overallIncome > 800000){
-      tax = Math.max(0, (overallIncome - 800000) * 0.4)
-      resultText.innerHTML = `Tax is applicable. the tax amour is ${tax}`
-    }
+    let taxableIncome = totalIncome - 800000
+      // Tax rate based on age group
+      let taxRate = 0;
+      switch (age) {
+          case 'less_than_40':
+              taxRate = 0.1;
+              break;
+          case 'between_40_and_60':
+              taxRate = 0.2;
+              break;
+          case 'greater_than_60':
+              taxRate = 0.3;
+              break;
+          default:
+              break;
+      }
+
+      // // Calculate taxable income
+      // let taxableIncome = grossIncome + extraIncome - deductions;
+
+      // Calculate tax
+      let tax = taxableIncome * taxRate;
+
+      // Calculate overall income after tax deductions
+      let overallIncome = totalIncome - tax;
+
+      return overallIncome;
   }
-  if(age.value === "greater_than_60"){
-    if(overallIncome <= 800000){
-      resultText.innerHTML =" No tax is payable"
-    }else if(overallIncome > 800000){
-      tax = Math.max(0, (overallIncome - 800000) * 0.1)
-      resultText.innerHTML = `Tax is applicable. The tax amount is ${tax}`
-    }
+
+  // Function to display result
+  function displayResult(result) {
+      document.getElementById('resultText').textContent = result.toFixed(2);
+      document.querySelector('.popup').style.display = 'block';
+     
   }
-  let closebtn = document.querySelector("#closebtn")
-  let popUp = document.querySelector(".popup")
-  popUp.classList.add("open-popup")
 
-  
-  closebtn.addEventListener("click",function(){
-   
-    popUp.classList.add("close-popup");
-    document.querySelector("#gross-annual-income").value = 0;
-  document.querySelector("#extra-income").value = 0;
-  document.querySelector("#deductions").value = 0;
-  document.querySelector("#age").value = "";
-  document.querySelector("#resultText").innerHTML = "";
-  
+  // Function to close popup
+  function closePopup() {
+      document.querySelector('.popup').style.display = 'none';
+      reinitialize();
+  }
 
-    
-  })
- 
-  
-})
-
-
-
-
-
-
-
-
-
-
-
- // if(overallIncome <=800000){
-  //   console.log("no tax")
-  // }else  if(overallIncome > 800000){
-  //   console.log("tax is applicable")
-  //   if(age <40){
-  //     tax =Math.max(0, (overallIncome - 800000) * 0.3)
+  // Event listener for form submission
+  document.getElementById('tax-form').addEventListener('submit', function(event) {
+      event.preventDefault();
       
-  //   }else if(age >=40 && age <60){
-  //     tax = Math.max(0, (overallIncome - 800000) * 0.4)
-  //   }else if(age >= 60){
-  //     tax = Math.max(0, (overallIncome - 800000) * 0.1)
-  //   }
+      // Get form input values
+      let grossIncome = parseFloat(document.getElementById('gross-annual-income').value);
+      let extraIncome = parseFloat(document.getElementById('extra-income').value) || 0;
+      let deductions = parseFloat(document.getElementById('deductions').value);
+      let age = document.getElementById('age').value;
+
+      // Calculate tax
+      let result = calculateTax(grossIncome, extraIncome, deductions, age);
+
+      // Display result
+      displayResult(result);
+  });
+
+  // Event listener for closing popup
+  document.getElementById('closebtn').addEventListener('click', function() {
+      closePopup();
+      
+  });
+});
+
+function reinitialize(){
+  let grossIncome = document.getElementById('gross-annual-income').value = ""; 
+      let extraIncome = document.getElementById('extra-income').value ="";
+      let deductions = document.getElementById('deductions').value = "";
+      let age = document.getElementById('age').value="";
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
