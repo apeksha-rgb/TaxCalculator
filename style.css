@@ -12,10 +12,11 @@
     border:2px solid rgba(0, 162, 255, 0.716);
     text-align: center;
     padding: 30px;
-    /* visibility: hidden; */
-    visibility: visible;
+    visibility: hidden;
+    /* visibility: visible; */
     transition: transform 0.4s, top 0.4s;
 }
+
 /*
 .open-popup{
     visibility: visible;

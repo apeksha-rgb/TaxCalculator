@@ -1,4 +1,7 @@
+
+
 document.addEventListener('DOMContentLoaded', function() {
+
   // Function to calculate tax
   function calculateTax(grossIncome, extraIncome, deductions, age) {
     let totalIncome = grossIncome + extraIncome - deductions;
@@ -38,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function displayResult(result) {
       document.getElementById('resultText').textContent = result.toFixed(2);
       document.querySelector('.popup').style.display = 'block';
+      document.querySelector('.popup').style.visibility = "visible"
      
   }
 
@@ -45,6 +49,14 @@ document.addEventListener('DOMContentLoaded', function() {
   function closePopup() {
       document.querySelector('.popup').style.display = 'none';
       reinitialize();
+  }
+
+  function reinitialize(){
+    let grossIncome = document.getElementById('gross-annual-income').value = ""; 
+        let extraIncome = document.getElementById('extra-income').value ="";
+        let deductions = document.getElementById('deductions').value = "";
+        let age = document.getElementById('age').value="";
+  
   }
 
   // Event listener for form submission
@@ -57,32 +69,54 @@ document.addEventListener('DOMContentLoaded', function() {
       let deductions = parseFloat(document.getElementById('deductions').value);
       let age = document.getElementById('age').value;
 
-      if (grossIncome < 100000) {
+      
+
+    if (grossIncome < 100000) {
         alert('Gross annual income must be greater than 1 lakh.');
+        return;
+    }else if(extraIncome < 0){
+        alert("Extra Income cannot be negative")
+        return;
+    }else if(deductions < 0){
+        alert("Deduction canot be negative")
         return;
     }
 
       // Calculate tax
-      let result = calculateTax(grossIncome, extraIncome, deductions, age);
+     let result = calculateTax(grossIncome, extraIncome, deductions, age);
 
-      // Display result
+     // Display result
       displayResult(result);
   });
+
+  
 
   // Event listener for closing popup
   document.getElementById('closebtn').addEventListener('click', function() {
       closePopup();
       
   });
+  
+  //tooltip alert 
+  document.querySelector(".tooltip-age").addEventListener("click",function(){
+    
+    alert("Select your age group to determine the tax rate applicable to you. Different tax slabs apply to different age groups.")
+  })
+  document.querySelector(".tooltip-extraIncome").addEventListener("click",function(){
+    
+    alert("Any additional income earned outside of your gross annual income, such as income from freelancing, rental properties, or interest from investments")
+  })
+  document.querySelector(".tooltip-deductions").addEventListener("click",function(){
+    
+    alert("The total amount of deductions that can be applied to your gross annual income")
+   })
+  document.querySelector(".tooltip-grossIncome").addEventListener("click",function(){
+   
+    alert("Gross annual income is your total salary in a year before any deductions")
+  })        
 });
 
-function reinitialize(){
-  let grossIncome = document.getElementById('gross-annual-income').value = ""; 
-      let extraIncome = document.getElementById('extra-income').value ="";
-      let deductions = document.getElementById('deductions').value = "";
-      let age = document.getElementById('age').value="";
 
-}
 
 
 
